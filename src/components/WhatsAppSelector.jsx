@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -9,17 +9,30 @@ const WhatsAppSelector = ({
   inline = false
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [position, setPosition] = useState({ top: 0, left: 0 });
+  const buttonRef = useRef(null);
 
   const contacts = [
     { name: 'Gina', number: '5215539887030' },
     { name: 'Paola', number: '5215539887030' }
   ];
 
+  useEffect(() => {
+    if (isOpen && buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setPosition({
+        top: rect.bottom + 8,
+        left: rect.left
+      });
+    }
+  }, [isOpen]);
+
   if (inline) {
     // Versión inline para botones normales (no flotante)
     return (
-      <div className="relative inline-block">
+      <>
         <button
+          ref={buttonRef}
           onClick={() => setIsOpen(!isOpen)}
           className={className}
         >
@@ -41,7 +54,12 @@ const WhatsAppSelector = ({
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.95 }}
                 transition={{ duration: 0.15 }}
-                className="absolute top-full left-0 mt-2 bg-white rounded-2xl shadow-2xl overflow-visible z-50 min-w-[240px]"
+                style={{
+                  position: 'fixed',
+                  top: `${position.top}px`,
+                  left: `${position.left}px`
+                }}
+                className="bg-white rounded-2xl shadow-2xl z-50 min-w-[240px]"
               >
                 <div className="bg-brand-coral text-white px-4 py-3 font-semibold text-center text-sm">
                   ¿Con qué representante quieres hablar?
@@ -70,7 +88,7 @@ const WhatsAppSelector = ({
             </>
           )}
         </AnimatePresence>
-      </div>
+      </>
     );
   }
 
