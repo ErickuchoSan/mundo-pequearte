@@ -1,9 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+import { DEFAULT_MESSAGE } from '../config/contacts';
+import ContactDropdown from './ContactDropdown';
 
 const WhatsAppSelector = ({
-  message = 'Hola!%20Me%20interesa%20cotizar%20un%20evento.',
+  message = DEFAULT_MESSAGE,
   buttonText = '¡Cotiza tu evento!',
   className = '',
   inline = false
@@ -11,11 +13,6 @@ const WhatsAppSelector = ({
   const [isOpen, setIsOpen] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const buttonRef = useRef(null);
-
-  const contacts = [
-    { name: 'Gina', number: '5215539887030' },
-    { name: 'Paola', number: '5215539887030' }
-  ];
 
   useEffect(() => {
     if (isOpen && buttonRef.current) {
@@ -74,29 +71,11 @@ const WhatsAppSelector = ({
                 }}
                 className="bg-white rounded-2xl shadow-2xl z-50 min-w-[240px]"
               >
-                <div className="bg-brand-coral text-white px-4 py-3 font-semibold text-center text-sm">
-                  ¿Con qué representante quieres hablar?
-                </div>
-                <div className="p-2">
-                  {contacts.map((contact, index) => (
-                    <a
-                      key={index}
-                      href={`https://wa.me/${contact.number}?text=${message}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 px-4 py-3 hover:bg-brand-peach rounded-lg transition-colors duration-200 group"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <div className="bg-brand-teal/20 p-2 rounded-full group-hover:bg-brand-teal/30 transition-colors">
-                        <FaWhatsapp className="text-brand-teal text-lg" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-gray-800 text-sm">{contact.name}</p>
-                        <p className="text-xs text-brand-purple">Chatear ahora</p>
-                      </div>
-                    </a>
-                  ))}
-                </div>
+                <ContactDropdown
+                  message={message}
+                  onContactClick={() => setIsOpen(false)}
+                  variant="brand"
+                />
               </motion.div>
             </>
           )}
