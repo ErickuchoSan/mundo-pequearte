@@ -27,6 +27,19 @@ const WhatsAppSelector = ({
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    if (isOpen) {
+      const handleScroll = () => {
+        setIsOpen(false);
+      };
+
+      window.addEventListener('scroll', handleScroll, true);
+      return () => {
+        window.removeEventListener('scroll', handleScroll, true);
+      };
+    }
+  }, [isOpen]);
+
   if (inline) {
     // Versión inline para botones normales (no flotante)
     return (
