@@ -12,7 +12,18 @@ const WhatsAppSelector = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const buttonRef = useRef(null);
+
+  // Detectar preferencia de movimiento reducido
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   useEffect(() => {
     if (isOpen && buttonRef.current) {
@@ -78,10 +89,10 @@ const WhatsAppSelector = ({
               />
 
               <motion.div
-                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: -10, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                transition={{ duration: 0.15 }}
+                exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -10, scale: 0.95 }}
+                transition={{ duration: prefersReducedMotion ? 0.01 : 0.15 }}
                 style={{
                   position: 'fixed',
                   top: `${position.top}px`,

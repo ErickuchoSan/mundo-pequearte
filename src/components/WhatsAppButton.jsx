@@ -7,6 +7,17 @@ import ContactDropdown from './ContactDropdown';
 const WhatsAppButton = ({ message = DEFAULT_MESSAGE }) => {
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  // Detectar preferencia de movimiento reducido
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   // Cerrar con Escape
   useEffect(() => {
@@ -29,10 +40,10 @@ const WhatsAppButton = ({ message = DEFAULT_MESSAGE }) => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            transition={{ duration: 0.2 }}
+            exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.9 }}
+            transition={{ duration: prefersReducedMotion ? 0.01 : 0.2 }}
             className="absolute bottom-20 right-0 bg-white rounded-2xl shadow-2xl overflow-hidden mb-2 min-w-[200px]"
           >
             <ContactDropdown
@@ -48,12 +59,12 @@ const WhatsAppButton = ({ message = DEFAULT_MESSAGE }) => {
       <motion.button
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-green-500 text-white p-3 sm:p-4 rounded-full shadow-2xl hover:bg-green-600 transition-colors duration-300 flex items-center justify-center relative"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        initial={{ opacity: 0, scale: 0 }}
+        className="bg-green-500 text-white p-3 sm:p-4 rounded-full shadow-2xl hover:bg-green-600 transition-colors duration-300 flex items-center justify-center relative min-w-[44px] min-h-[44px]"
+        whileHover={prefersReducedMotion ? {} : { scale: 1.1 }}
+        whileTap={prefersReducedMotion ? {} : { scale: 0.9 }}
+        initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: prefersReducedMotion ? 0.01 : 0.3 }}
         aria-label={isOpen ? "Cerrar menú de WhatsApp" : "Abrir menú de WhatsApp"}
         aria-expanded={isOpen}
         aria-haspopup="menu"
