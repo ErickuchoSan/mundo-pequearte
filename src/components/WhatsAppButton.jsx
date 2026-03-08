@@ -22,8 +22,8 @@ const WhatsAppButton = ({ message = 'Hola!%20Me%20interesa%20cotizar%20un%20even
             transition={{ duration: 0.2 }}
             className="absolute bottom-20 right-0 bg-white rounded-2xl shadow-2xl overflow-hidden mb-2 min-w-[200px]"
           >
-            <div className="bg-green-500 text-white px-4 py-3 font-semibold text-center">
-              ¿Con quién quieres hablar?
+            <div className="bg-green-500 text-white px-4 py-3 font-semibold text-center text-sm sm:text-base">
+              ¿Con qué representante quieres hablar?
             </div>
             <div className="p-2">
               {contacts.map((contact, index) => (

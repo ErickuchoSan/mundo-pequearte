@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaInstagram } from 'react-icons/fa';
+import { FaInstagram, FaFacebookF } from 'react-icons/fa';
 import SocialLinks from '../components/SocialLinks';
 
 const Nosotras = () => {
@@ -9,14 +9,16 @@ const Nosotras = () => {
       photo: '/images/gina.jpg', // placeholder
       bio: 'Artista apasionada con más de 5 años de experiencia en entretenimiento infantil. Me encanta ver las caritas de felicidad de los peques.',
       style: 'Especialista en pintacaritas y maquillaje artístico',
-      instagram: 'https://instagram.com/gina_instagram'
+      instagram: 'https://instagram.com/gina_instagram',
+      facebook: 'https://facebook.com/gina.facebook'
     },
     {
       name: 'Paola',
       photo: '/images/paola.jpg', // placeholder
       bio: 'Creativa y dinámica, disfruto creando experiencias únicas para cada evento. Cada detalle cuenta para hacer la magia realidad.',
       style: 'Experta en manualidades y decoración temática',
-      instagram: 'https://instagram.com/paola_instagram'
+      instagram: 'https://instagram.com/paola_instagram',
+      facebook: 'https://facebook.com/paola.facebook'
     }
   ];
 
@@ -76,10 +78,15 @@ const Nosotras = () => {
             </div>
 
             <div className="mb-4 px-4">
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">
-                Síguenos en nuestras redes
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
+                Síguenos en nuestras redes oficiales
               </h3>
-              <SocialLinks />
+              <p className="text-base sm:text-lg text-gray-600 mb-6">
+                Mantente al día con nuestros últimos trabajos y promociones
+              </p>
+              <div className="bg-gradient-to-r from-brand-lavender to-brand-purple p-8 rounded-2xl shadow-2xl">
+                <SocialLinks />
+              </div>
             </div>
           </motion.div>
         </div>
@@ -132,16 +139,32 @@ const Nosotras = () => {
                   <p className="text-base sm:text-lg text-brand-coral font-semibold mb-3 sm:mb-4">{member.style}</p>
                   <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6 leading-relaxed">{member.bio}</p>
 
-                  {/* Instagram personal */}
-                  <a
-                    href={member.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-brand-purple hover:text-brand-coral transition-colors duration-200"
-                  >
-                    <FaInstagram className="text-xl sm:text-2xl" />
-                    <span className="text-sm sm:text-base font-semibold">Sígueme en Instagram</span>
-                  </a>
+                  {/* Redes sociales personales - Secundarias */}
+                  <div className="pt-4 border-t border-gray-200">
+                    <p className="text-xs text-gray-500 mb-2">Redes personales:</p>
+                    <div className="flex gap-2">
+                      <a
+                        href={member.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 px-3 py-2 bg-gray-100 text-gray-600 hover:bg-pink-100 hover:text-pink-600 rounded-lg transition-colors duration-200 text-xs"
+                        aria-label={`Instagram de ${member.name}`}
+                      >
+                        <FaInstagram className="text-sm" />
+                        <span className="font-medium">Instagram</span>
+                      </a>
+                      <a
+                        href={member.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 px-3 py-2 bg-gray-100 text-gray-600 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition-colors duration-200 text-xs"
+                        aria-label={`Facebook de ${member.name}`}
+                      >
+                        <FaFacebookF className="text-sm" />
+                        <span className="font-medium">Facebook</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             ))}

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaClock, FaInstagram } from 'react-icons/fa';
+import { FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaClock, FaInstagram, FaFacebookF } from 'react-icons/fa';
 import SocialLinks from '../components/SocialLinks';
 
 const Contacto = () => {
@@ -8,9 +8,17 @@ const Contacto = () => {
     { name: 'Paola', number: '521XXXXXXXXXX' },
   ];
 
-  const teamInstagram = [
-    { name: 'Gina', url: 'https://instagram.com/gina_instagram' },
-    { name: 'Paola', url: 'https://instagram.com/paola_instagram' },
+  const teamSocials = [
+    {
+      name: 'Gina',
+      instagram: 'https://instagram.com/gina_instagram',
+      facebook: 'https://facebook.com/gina.facebook'
+    },
+    {
+      name: 'Paola',
+      instagram: 'https://instagram.com/paola_instagram',
+      facebook: 'https://facebook.com/paola.facebook'
+    },
   ];
 
   return (
@@ -51,10 +59,15 @@ const Contacto = () => {
 
                 {/* Redes sociales principales */}
                 <div className="mb-8">
-                  <h3 className="text-xl font-semibold text-gray-700 mb-4">
-                    Síguenos en redes
+                  <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                    Nuestras Redes Oficiales
                   </h3>
-                  <SocialLinks />
+                  <p className="text-sm text-gray-500 mb-4">
+                    Síguenos para ver nuestros últimos trabajos
+                  </p>
+                  <div className="bg-gradient-to-r from-brand-lavender to-brand-purple p-6 rounded-xl">
+                    <SocialLinks />
+                  </div>
                 </div>
 
                 {/* WhatsApp */}
@@ -103,24 +116,37 @@ const Contacto = () => {
             >
               {/* El Equipo */}
               <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
-                <h2 className="text-3xl font-bold text-gray-800 mb-6">
-                  El Equipo
+                <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                  Redes Personales del Equipo
                 </h2>
-                <p className="text-gray-600 mb-6">
-                  Síguenos en nuestras cuentas personales para ver más de nuestro trabajo
+                <p className="text-sm text-gray-500 mb-6">
+                  Contenido adicional y detrás de cámaras
                 </p>
                 <div className="space-y-4">
-                  {teamInstagram.map((member, index) => (
-                    <a
-                      key={index}
-                      href={member.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-xl hover:from-pink-600 hover:to-purple-600 transition-all duration-300"
-                    >
-                      <FaInstagram className="text-2xl" />
-                      <span className="font-semibold">Instagram de {member.name}</span>
-                    </a>
+                  {teamSocials.map((member, index) => (
+                    <div key={index} className="bg-gray-50 rounded-xl p-4">
+                      <p className="font-bold text-gray-800 mb-3">{member.name}</p>
+                      <div className="flex gap-3">
+                        <a
+                          href={member.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg hover:from-pink-600 hover:to-purple-600 transition-all duration-300 flex-1 justify-center"
+                        >
+                          <FaInstagram className="text-lg" />
+                          <span className="text-sm font-semibold">Instagram</span>
+                        </a>
+                        <a
+                          href={member.facebook}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 flex-1 justify-center"
+                        >
+                          <FaFacebookF className="text-lg" />
+                          <span className="text-sm font-semibold">Facebook</span>
+                        </a>
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
