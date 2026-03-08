@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { WHATSAPP_CONTACTS } from '../config/contacts';
 
@@ -6,17 +7,19 @@ const ContactDropdown = ({
   onContactClick,
   variant = 'default' // 'default' para botón flotante, 'brand' para inline
 }) => {
+  const firstLinkRef = useRef(null);
+
   const styles = {
     default: {
       header: 'bg-green-500 text-white',
-      contactHover: 'hover:bg-green-50',
+      contactHover: 'hover:bg-green-50 focus:bg-green-50',
       iconBg: 'bg-green-100 group-hover:bg-green-200',
       iconColor: 'text-green-600',
       subtitle: 'text-gray-500'
     },
     brand: {
       header: 'bg-brand-coral text-white',
-      contactHover: 'hover:bg-brand-peach',
+      contactHover: 'hover:bg-brand-peach focus:bg-brand-peach',
       iconBg: 'bg-brand-teal/20 group-hover:bg-brand-teal/30',
       iconColor: 'text-brand-teal',
       subtitle: 'text-brand-purple'
@@ -25,22 +28,35 @@ const ContactDropdown = ({
 
   const currentStyle = styles[variant];
 
+  // Auto-focus primer elemento al abrir
+  useEffect(() => {
+    if (firstLinkRef.current) {
+      firstLinkRef.current.focus();
+    }
+  }, []);
+
   return (
-    <>
-      <div className={`${currentStyle.header} px-4 py-3 font-semibold text-center text-sm sm:text-base`}>
+    <div role="menu" aria-label="Seleccionar representante de WhatsApp">
+      <div
+        className={`${currentStyle.header} px-4 py-3 font-semibold text-center text-sm sm:text-base`}
+        id="contact-dropdown-label"
+      >
         ¿Con qué representante quieres hablar?
       </div>
-      <div className="p-2">
+      <div className="p-2" role="group" aria-labelledby="contact-dropdown-label">
         {WHATSAPP_CONTACTS.map((contact, index) => (
           <a
             key={index}
+            ref={index === 0 ? firstLinkRef : null}
             href={`https://wa.me/${contact.number}?text=${message}`}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center gap-3 px-4 py-3 ${currentStyle.contactHover} rounded-lg transition-colors duration-200 group`}
+            role="menuitem"
+            aria-label={`Chatear con ${contact.name} por WhatsApp`}
+            className={`flex items-center gap-3 px-4 py-3 ${currentStyle.contactHover} rounded-lg transition-colors duration-200 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-coral`}
             onClick={onContactClick}
           >
-            <div className={`${currentStyle.iconBg} p-2 rounded-full transition-colors`}>
+            <div className={`${currentStyle.iconBg} p-2 rounded-full transition-colors`} aria-hidden="true">
               <FaWhatsapp className={`${currentStyle.iconColor} text-xl`} />
             </div>
             <div>
@@ -50,7 +66,7 @@ const ContactDropdown = ({
           </a>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

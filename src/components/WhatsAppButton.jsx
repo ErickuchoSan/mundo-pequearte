@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FaWhatsapp, FaTimes } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { DEFAULT_MESSAGE } from '../config/contacts';
@@ -6,6 +6,22 @@ import ContactDropdown from './ContactDropdown';
 
 const WhatsAppButton = ({ message = DEFAULT_MESSAGE }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const buttonRef = useRef(null);
+
+  // Cerrar con Escape
+  useEffect(() => {
+    if (isOpen) {
+      const handleEscape = (e) => {
+        if (e.key === 'Escape') {
+          setIsOpen(false);
+          buttonRef.current?.focus();
+        }
+      };
+
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [isOpen]);
 
   return (
     <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
@@ -30,6 +46,7 @@ const WhatsAppButton = ({ message = DEFAULT_MESSAGE }) => {
 
       {/* Botón principal */}
       <motion.button
+        ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
         className="bg-green-500 text-white p-3 sm:p-4 rounded-full shadow-2xl hover:bg-green-600 transition-colors duration-300 flex items-center justify-center relative"
         whileHover={{ scale: 1.1 }}
@@ -37,7 +54,9 @@ const WhatsAppButton = ({ message = DEFAULT_MESSAGE }) => {
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
-        aria-label="Contactar por WhatsApp"
+        aria-label={isOpen ? "Cerrar menú de WhatsApp" : "Abrir menú de WhatsApp"}
+        aria-expanded={isOpen}
+        aria-haspopup="menu"
       >
         {isOpen ? (
           <FaTimes className="text-2xl sm:text-3xl md:text-4xl" />

@@ -37,6 +37,21 @@ const WhatsAppSelector = ({
     }
   }, [isOpen]);
 
+  // Cerrar con Escape y devolver focus
+  useEffect(() => {
+    if (isOpen) {
+      const handleEscape = (e) => {
+        if (e.key === 'Escape') {
+          setIsOpen(false);
+          buttonRef.current?.focus();
+        }
+      };
+
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [isOpen]);
+
   if (inline) {
     // Versión inline para botones normales (no flotante)
     return (
@@ -45,8 +60,11 @@ const WhatsAppSelector = ({
           ref={buttonRef}
           onClick={() => setIsOpen(!isOpen)}
           className={className}
+          aria-label={`${buttonText} - Seleccionar representante`}
+          aria-expanded={isOpen}
+          aria-haspopup="menu"
         >
-          <FaWhatsapp className="inline mr-2 text-xl" />
+          <FaWhatsapp className="inline mr-2 text-xl" aria-hidden="true" />
           {buttonText}
         </button>
 
