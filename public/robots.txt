@@ -1,0 +1,25 @@
+# robots.txt for Mundo PequeArte
+# https://mundopequearte.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://mundopequearte.com/sitemap.xml
+
+# Crawl-delay for respectful bots
+Crawl-delay: 1
+
+# Block specific bots if needed (examples commented out)
+# User-agent: BadBot
+# Disallow: /
+
+# Allow Google and other major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /

@@ -5,7 +5,9 @@ import ActivityCard from '../components/ActivityCard';
 import TestimonialCard from '../components/TestimonialCard';
 import SocialLinks from '../components/SocialLinks';
 import WhatsAppSelector from '../components/WhatsAppSelector';
+import SEO from '../components/SEO';
 import { activities } from '../data/activities';
+import { getLocalBusinessSchema, PAGE_KEYWORDS } from '../config/seo';
 
 const Home = () => {
   // Actividades destacadas (primeras 6)
@@ -55,8 +57,16 @@ const Home = () => {
   ];
 
   return (
-    <div className="overflow-x-hidden">
-      {/* HERO SECTION */}
+    <>
+      <SEO
+        title="Mundo PequeArte - Entretenimiento Infantil en CDMX | Pintacaritas, Manualidades y Más"
+        description="Llevamos creatividad y magia a tu evento. Pintacaritas, manualidades, spa infantil, animación y más actividades para fiestas infantiles en CDMX y área metropolitana. ¡Cotiza ahora!"
+        keywords={PAGE_KEYWORDS.home}
+        canonical="/"
+        structuredData={getLocalBusinessSchema()}
+      />
+      <div className="overflow-x-hidden">
+        {/* HERO SECTION */}
       <section className="relative bg-gradient-to-br from-brand-lavender via-brand-purple to-brand-teal py-12 sm:py-16 md:py-24 lg:py-32 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -252,7 +262,8 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 
