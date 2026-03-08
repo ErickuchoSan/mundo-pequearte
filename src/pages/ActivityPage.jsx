@@ -88,7 +88,7 @@ const ActivityPage = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 px-4 md:px-0">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 px-4 md:px-0 pt-6">
               {activity.packages.map((pkg, index) => (
                 <motion.div
                   key={index}
@@ -96,7 +96,6 @@ const ActivityPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="my-4 md:my-0"
                 >
                   <PackageCard
                     package={pkg}
