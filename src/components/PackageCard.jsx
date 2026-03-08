@@ -9,12 +9,12 @@ const PackageCard = ({ package: pkg, activityName, isPopular }) => {
 
   return (
     <motion.div
-      className={`relative bg-white rounded-2xl shadow-lg p-8 ${
-        isPopular ? 'ring-4 ring-brand-yellow scale-105' : ''
+      className={`relative bg-white rounded-2xl shadow-lg p-6 md:p-8 ${
+        isPopular ? 'ring-4 ring-brand-yellow' : ''
       } hover:shadow-2xl transition-all duration-300`}
-      whileHover={{ y: -8 }}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: isPopular ? 1.05 : 1 }}
+      whileHover={{ y: -8, scale: 1.02 }}
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
     >
       {/* Badge "Más popular" */}
