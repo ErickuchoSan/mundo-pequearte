@@ -88,7 +88,7 @@ const ActivityPage = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 px-4 md:px-0 pt-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20 xl:gap-24 px-4 md:px-8 lg:px-12 pt-6">
               {activity.packages.map((pkg, index) => (
                 <motion.div
                   key={index}
