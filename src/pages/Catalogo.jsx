@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import ActivityCard from '../components/ActivityCard';
+import WhatsAppSelector from '../components/WhatsAppSelector';
 import { activities, getActivitiesByCategory, categories } from '../data/activities';
 
 const Catalogo = () => {
@@ -81,14 +82,12 @@ const Catalogo = () => {
             <p className="text-base sm:text-lg text-white mb-6 sm:mb-8 px-4">
               Te ayudamos a elegir la actividad perfecta para tu evento
             </p>
-            <a
-              href="https://wa.me/521XXXXXXXXXX?text=Hola!%20Necesito%20ayuda%20para%20elegir%20una%20actividad%20para%20mi%20evento."
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppSelector
+              message="Hola!%20Necesito%20ayuda%20para%20elegir%20una%20actividad%20para%20mi%20evento."
+              buttonText="¡Chatea con nosotras!"
               className="inline-block bg-white text-brand-coral px-8 py-4 rounded-full text-lg font-bold hover:bg-brand-purple hover:text-white transition-all duration-300 transform hover:scale-105 shadow-2xl"
-            >
-              ¡Chatea con nosotras!
-            </a>
+              inline={true}
+            />
           </motion.div>
         </div>
       </section>

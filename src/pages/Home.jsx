@@ -4,6 +4,7 @@ import { FaPalette, FaShieldAlt, FaClock, FaTruck } from 'react-icons/fa';
 import ActivityCard from '../components/ActivityCard';
 import TestimonialCard from '../components/TestimonialCard';
 import SocialLinks from '../components/SocialLinks';
+import WhatsAppSelector from '../components/WhatsAppSelector';
 import { activities } from '../data/activities';
 
 const Home = () => {
@@ -79,14 +80,12 @@ const Home = () => {
 
             {/* Botones CTA */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-              <a
-                href="https://wa.me/521XXXXXXXXXX?text=Hola!%20Me%20interesa%20cotizar%20un%20evento."
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppSelector
+                message="Hola!%20Me%20interesa%20cotizar%20un%20evento."
+                buttonText="¡Cotiza tu evento por WhatsApp!"
                 className="bg-brand-coral text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-brand-yellow hover:text-gray-800 transition-all duration-300 transform hover:scale-105 shadow-lg"
-              >
-                ¡Cotiza tu evento por WhatsApp!
-              </a>
+                inline={true}
+              />
               <Link
                 to="/actividades"
                 className="bg-white text-brand-purple px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-brand-yellow transition-all duration-300 transform hover:scale-105 shadow-lg"
@@ -244,14 +243,12 @@ const Home = () => {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 px-4">
               ¿Lista para hacer mágico el evento de tu peque?
             </h2>
-            <a
-              href="https://wa.me/521XXXXXXXXXX?text=Hola!%20Me%20interesa%20cotizar%20un%20evento."
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppSelector
+              message="Hola!%20Me%20interesa%20cotizar%20un%20evento."
+              buttonText="¡Cotiza ahora por WhatsApp!"
               className="inline-block bg-white text-brand-coral px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full text-base sm:text-lg md:text-xl font-bold hover:bg-brand-purple hover:text-white transition-all duration-300 transform hover:scale-105 shadow-2xl"
-            >
-              ¡Cotiza ahora por WhatsApp!
-            </a>
+              inline={true}
+            />
           </motion.div>
         </div>
       </section>

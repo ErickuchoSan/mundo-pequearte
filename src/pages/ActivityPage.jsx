@@ -1,8 +1,9 @@
 import { useParams, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaWhatsapp, FaCheckCircle } from 'react-icons/fa';
+import { FaCheckCircle } from 'react-icons/fa';
 import GalleryGrid from '../components/GalleryGrid';
 import PackageCard from '../components/PackageCard';
+import WhatsAppSelector from '../components/WhatsAppSelector';
 import { getActivityBySlug } from '../data/activities';
 
 const ActivityPage = () => {
@@ -14,10 +15,7 @@ const ActivityPage = () => {
     return <Navigate to="/actividades" replace />;
   }
 
-  const whatsappMessage = encodeURIComponent(
-    `Hola! Me interesa cotizar ${activity.name} para mi evento.`
-  );
-  const whatsappUrl = `https://wa.me/521XXXXXXXXXX?text=${whatsappMessage}`;
+  const whatsappMessage = `Hola!%20Me%20interesa%20cotizar%20${encodeURIComponent(activity.name)}%20para%20mi%20evento.`;
 
   return (
     <div className="min-h-screen bg-brand-white">
@@ -44,15 +42,12 @@ const ActivityPage = () => {
             </p>
 
             {/* Botón WhatsApp principal */}
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppSelector
+              message={whatsappMessage}
+              buttonText="¡Cotiza esta actividad ahora!"
               className="inline-flex items-center gap-3 bg-green-500 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-green-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
-              <FaWhatsapp className="text-2xl" />
-              ¡Cotiza esta actividad ahora!
-            </a>
+              inline={true}
+            />
           </motion.div>
         </div>
       </section>
@@ -163,15 +158,12 @@ const ActivityPage = () => {
                 <strong>Información útil para tu cotización:</strong><br />
                 Temática del evento · Fecha · Número de invitados · Presupuesto aproximado
               </p>
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppSelector
+                message={whatsappMessage}
+                buttonText="Solicitar cotización por WhatsApp"
                 className="inline-flex items-center gap-3 bg-green-500 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-green-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
-              >
-                <FaWhatsapp className="text-2xl" />
-                Solicitar cotización por WhatsApp
-              </a>
+                inline={true}
+              />
             </motion.div>
           </div>
         </section>
@@ -223,15 +215,12 @@ const ActivityPage = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               ¿Lista para reservar {activity.name}?
             </h2>
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppSelector
+              message={whatsappMessage}
+              buttonText="¡Cotiza ahora!"
               className="inline-flex items-center gap-3 bg-white text-brand-coral px-10 py-5 rounded-full text-xl font-bold hover:bg-brand-purple hover:text-white transition-all duration-300 transform hover:scale-105 shadow-2xl"
-            >
-              <FaWhatsapp className="text-2xl" />
-              ¡Cotiza ahora!
-            </a>
+              inline={true}
+            />
           </motion.div>
         </div>
       </section>

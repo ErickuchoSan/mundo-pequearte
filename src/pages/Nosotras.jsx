@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FaInstagram, FaFacebookF } from 'react-icons/fa';
 import SocialLinks from '../components/SocialLinks';
+import WhatsAppSelector from '../components/WhatsAppSelector';
 
 const Nosotras = () => {
   const teamMembers = [
@@ -184,14 +185,12 @@ const Nosotras = () => {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 px-4">
               ¿Quieres que llevemos la magia a tu evento?
             </h2>
-            <a
-              href="https://wa.me/521XXXXXXXXXX?text=Hola!%20Me%20interesa%20cotizar%20un%20evento."
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppSelector
+              message="Hola!%20Me%20interesa%20cotizar%20un%20evento."
+              buttonText="¡Cotiza tu evento ahora!"
               className="inline-block bg-brand-coral text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-brand-yellow hover:text-gray-800 transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
-              ¡Cotiza tu evento ahora!
-            </a>
+              inline={true}
+            />
           </motion.div>
         </div>
       </section>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HiMenu, HiX } from 'react-icons/hi';
-import { FaWhatsapp } from 'react-icons/fa';
+import WhatsAppSelector from './WhatsAppSelector';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +9,7 @@ const Navbar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const menuItems = [
+    { name: 'Inicio', path: '/' },
     { name: 'Nosotras', path: '/nosotras' },
     { name: 'Actividades', path: '/actividades' },
     { name: 'Contacto', path: '/contacto' },
@@ -41,15 +42,12 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <a
-              href="https://wa.me/521XXXXXXXXXX?text=Hola!%20Me%20interesa%20cotizar%20un%20evento."
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppSelector
+              message="Hola!%20Me%20interesa%20cotizar%20un%20evento."
+              buttonText="¡Cotiza tu evento!"
               className="bg-brand-coral text-white px-6 py-2 rounded-full hover:bg-brand-yellow hover:text-gray-800 transition-all duration-300 font-semibold flex items-center gap-2"
-            >
-              <FaWhatsapp className="text-xl" />
-              ¡Cotiza tu evento!
-            </a>
+              inline={true}
+            />
           </div>
 
           {/* Mobile Menu Button */}
@@ -76,15 +74,14 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <a
-              href="https://wa.me/521XXXXXXXXXX?text=Hola!%20Me%20interesa%20cotizar%20un%20evento."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block px-4 py-3 mt-2 bg-brand-coral text-white rounded-lg hover:bg-brand-yellow hover:text-gray-800 transition-all duration-200 text-center font-semibold"
-            >
-              <FaWhatsapp className="inline mr-2 text-xl" />
-              ¡Cotiza tu evento!
-            </a>
+            <div className="mt-2">
+              <WhatsAppSelector
+                message="Hola!%20Me%20interesa%20cotizar%20un%20evento."
+                buttonText="¡Cotiza tu evento!"
+                className="block w-full px-4 py-3 bg-brand-coral text-white rounded-lg hover:bg-brand-yellow hover:text-gray-800 transition-all duration-200 text-center font-semibold"
+                inline={true}
+              />
+            </div>
           </div>
         </div>
       )}

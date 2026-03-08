@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaClock, FaInstagram, FaFacebookF } from 'react-icons/fa';
 import SocialLinks from '../components/SocialLinks';
+import WhatsAppSelector from '../components/WhatsAppSelector';
 
 const Contacto = () => {
   const whatsappContacts = [
@@ -114,13 +115,13 @@ const Contacto = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              {/* El Equipo */}
+              {/* Conócenos */}
               <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
                 <h2 className="text-2xl font-bold text-gray-800 mb-2">
-                  Redes Personales del Equipo
+                  Conócenos
                 </h2>
                 <p className="text-sm text-gray-500 mb-6">
-                  Contenido adicional y detrás de cámaras
+                  Síguenos en nuestras redes personales
                 </p>
                 <div className="space-y-4">
                   {teamSocials.map((member, index) => (
@@ -196,14 +197,12 @@ const Contacto = () => {
             <p className="text-lg text-white mb-8">
               Contáctanos por WhatsApp y platícanos tu idea
             </p>
-            <a
-              href="https://wa.me/521XXXXXXXXXX?text=Hola!%20Me%20interesa%20cotizar%20un%20evento."
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppSelector
+              message="Hola!%20Me%20interesa%20cotizar%20un%20evento."
+              buttonText="¡Escríbenos ahora!"
               className="inline-block bg-white text-brand-coral px-8 py-4 rounded-full text-lg font-bold hover:bg-brand-purple hover:text-white transition-all duration-300 transform hover:scale-105 shadow-2xl"
-            >
-              ¡Escríbenos ahora!
-            </a>
+              inline={true}
+            />
           </motion.div>
         </div>
       </section>
