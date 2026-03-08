@@ -9,8 +9,8 @@ const PackageCard = ({ package: pkg, activityName, isPopular }) => {
 
   return (
     <motion.div
-      className={`relative bg-white rounded-2xl shadow-lg p-6 md:p-8 ${
-        isPopular ? 'ring-4 ring-brand-yellow' : ''
+      className={`relative bg-white rounded-2xl shadow-lg p-6 md:p-8 w-full max-w-full ${
+        isPopular ? 'ring-2 ring-brand-yellow' : ''
       } hover:shadow-2xl transition-all duration-300`}
       whileHover={{ y: -8, scale: 1.02 }}
       initial={{ opacity: 0, scale: 0.95 }}
