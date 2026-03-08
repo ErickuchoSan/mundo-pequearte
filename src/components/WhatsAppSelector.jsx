@@ -41,9 +41,9 @@ const WhatsAppSelector = ({
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.95 }}
                 transition={{ duration: 0.15 }}
-                className="absolute top-full left-0 mt-2 bg-white rounded-2xl shadow-2xl overflow-hidden z-50 min-w-[220px]"
+                className="absolute top-full left-0 mt-2 bg-white rounded-2xl shadow-2xl overflow-visible z-50 min-w-[240px]"
               >
-                <div className="bg-green-500 text-white px-4 py-3 font-semibold text-center text-sm">
+                <div className="bg-brand-coral text-white px-4 py-3 font-semibold text-center text-sm">
                   ¿Con qué representante quieres hablar?
                 </div>
                 <div className="p-2">
@@ -53,15 +53,15 @@ const WhatsAppSelector = ({
                       href={`https://wa.me/${contact.number}?text=${message}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 px-4 py-3 hover:bg-green-50 rounded-lg transition-colors duration-200 group"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-brand-peach rounded-lg transition-colors duration-200 group"
                       onClick={() => setIsOpen(false)}
                     >
-                      <div className="bg-green-100 p-2 rounded-full group-hover:bg-green-200 transition-colors">
-                        <FaWhatsapp className="text-green-600 text-lg" />
+                      <div className="bg-brand-teal/20 p-2 rounded-full group-hover:bg-brand-teal/30 transition-colors">
+                        <FaWhatsapp className="text-brand-teal text-lg" />
                       </div>
                       <div>
                         <p className="font-semibold text-gray-800 text-sm">{contact.name}</p>
-                        <p className="text-xs text-gray-500">Chatear ahora</p>
+                        <p className="text-xs text-brand-purple">Chatear ahora</p>
                       </div>
                     </a>
                   ))}
